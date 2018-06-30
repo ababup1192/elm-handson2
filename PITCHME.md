@@ -3,7 +3,8 @@
 ![](./elm-logo.png)
 
 The Elm Architecture編
-著者: @ababupdownba
+
+著者: [@ababupdownba](https://twitter.com/ababupdownba)
 
 ---
 
@@ -60,6 +61,20 @@ The Elm Architecture編
 ## 環境構築
 
 - https://gist.github.com/ababup1192/a1a091bcc0e535d180544639f531302c
+
+---
+
+## The Elm Architecture
+
+![TEA](https://github.com/ababup1192/elm-handson2/blob/master/img/architecture.png?raw=true)
+
+- aaa
+- aaa
+- aaa
+
++++
+
+![TEA Counter](https://github.com/ababup1192/elm-handson2/blob/master/img/counter.png?raw=true)
 
 ---
 
