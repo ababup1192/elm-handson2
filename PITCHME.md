@@ -288,10 +288,45 @@ view { word } =
 
 +++
 
+## EventでModelを書き換える
+
+この様な形にするとコンパイルエラーが生じる(次ページへ)。
+
+```elm
+type Msg
+    = NoOp
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        NoOp ->
+            ( model, Cmd.none )
+
+view : Model -> Html Msg
+view { word } =
+    div []
+        [ input [ type_ "text", onInput NoOp ] []
+        , h1 [] [ text word ]
+        ]
+```
+
++++
 
 ## EventでModelを書き換える
 
-```elm
+onInputは、Stringを受け取ってMsgを返す関数を求める。
 
+```elm
+The argument to function `onInput` is causing a mismatch.
+
+42|                                                 onInput NoOp
+                                                            ^^^^
+Function `onInput` is expecting the argument to be:
+
+    String -> Msg
+
+But it is:
+
+    Msg
 ```
 
