@@ -41,7 +41,7 @@ The Elm Architecture編
 
 - 環境構築
 - The Elm Architecture
-- Elm・The Elm Architecture
+- 実践 The Elm Architecture
 - Incremental Search演習
 - おまけ
 - アンケート
@@ -65,11 +65,35 @@ The Elm Architecture編
 
 ## The Elm Architecture の例
 
-- [カウンタアプリ](http://elm-lang.org/examples/buttons)
+[カウンタアプリ](http://elm-lang.org/examples/buttons)
 
 ![TEA Counter](https://github.com/ababup1192/elm-handson2/blob/master/img/counter.png?raw=true)
 
 ---
+
+## 実践 - Hello World
+
+```
+$ create-elm-app tea-hello
+$ cd tea-hello
+$ elm-app start
+open browser http://localhost:3000/
+```
+
++++
+
+## プロジェクト構成
+
+- Project Root
+    - elm-package.json
+    - elm-stuff
+        - elmライブラリ群
+    - src
+        - elm, js, css...
+    - public
+        - html, ico, svg, json...
+    - tests
+        - Tests.elm, elm-package.json(テスト用)
 
 ## 式とは
 
