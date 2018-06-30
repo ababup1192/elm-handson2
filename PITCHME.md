@@ -383,7 +383,6 @@ view model =
 type alias Model =
     { words : List String }
 
-
 init : ( Model, Cmd Msg )
 init =
     ( { words = [ "foo", "bar", "hoge", "fuga" ] }, Cmd.none )
