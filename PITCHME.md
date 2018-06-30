@@ -419,7 +419,7 @@ view { words } =
 - 1-100の整数から偶数だけを取り出し、liにする処理
 - あれだけど大変・・・読みづらい・・・
 
-```
+```elm
 view : Model -> Html Msg
 view { words } =
     let
@@ -440,7 +440,7 @@ view { words } =
 
 そんなときはパイプ演算子(|>)で、データが流れるように
 
-```
+```elm
 view : Model -> Html Msg
 view { words } =
     let
