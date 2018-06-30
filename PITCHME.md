@@ -23,19 +23,14 @@ The Elm Architecture編
 - Elmを一切知らない方
     - 始めたばかりで右も左もわからない方
 - フロントエンド開発が初めての方
-    - サーバサイドをやっている方には特にオススメ
-- 関数型に易しく入門したい方
-    - WEB(実務)アプリケーションを作ることに特化しており、その為に必要な
-      関数型のエッセンスが集約されています
+    - サーバサイド・インフラの人でも！
 
 ---
 
 ## このハンズオンの目的
 
-- Elmを認知してもらいたい
-    - 実践的な演習でElmの力強さを感じてもらいたい！
 - Elmの考えを引き出しの一つにしてもらいたい
-    - 他の言語でも、Elmの実務指向は必ず役に立ちます！
+    - 他の言語でも、Elmの思考は必ず役に立ちます！
     - 個人でもプロダクトでも選択肢の一つに！
 - Elmで気持ちよくなってもらいたい
     - 今までの言語と脳の使い方が違う(かも?)、だけどきもちい！！！
@@ -45,13 +40,8 @@ The Elm Architecture編
 ## 目次
 
 - 環境構築
-- The Elm Architecture概要
-    - Hello World
-    - Html Msg
-    - Model
-    - 値 -> Html Msg
-    - Event
-    - List (Html Msg)
+- The Elm Architecture
+- Elm・The Elm Architecture
 - Incremental Search演習
 - おまけ
 - アンケート
