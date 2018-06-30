@@ -4,7 +4,7 @@
 
 The Elm Architecture編
 
-著者: [@ababupdownba](https://twitter.com/ababupdownba)
+[@ababupdownba](https://twitter.com/ababupdownba)
 
 ---
 
@@ -151,7 +151,9 @@ view model =
 
 ---
 
-以下２つは同一です。
+## Html Msg
+
+ただのHTMLの文字列は、*text*関数で表します。空の要素を表すには、*text ""*と記述します。
 
 ```elm
 -- text : String -> Html msg
@@ -169,7 +171,7 @@ hello
 
 ## Html Msg
 
-タグを表す関数は、属性のリストと*HTML msg*のリストを受け取り、自身も*Html msg*という型で表されます。
+タグを表す関数は、属性のリストと*Html msg*のリストを受け取り、自身も*Html msg*という型で表されます。
 
 ```elm
 -- p : List (Attribute msg) -> List (Html msg) -> Html msg
@@ -186,6 +188,8 @@ view model =
 
 ## Html Msg
 
+リストに複数の*Html msg*を入れてみましょう。
+
 ```elm
 -- div : List (Attribute msg) -> List (Html msg) -> Html msg
 view : Model -> Html Msg
@@ -194,15 +198,34 @@ view model =
         [ h1 [] [ text "Hello" ]
         , p [] [ text "elm" ]
         ]
-
- [ id "foo", class "bar" ] []
 ```
 
 ```html
-<p id="foo", class="bar"></p>
+<div>
+    <h1>Hello</h1>
+    <p>elm</p>
+</div>
 ```
 
++++
 
+
+```elm
+type alias Model =
+    { word : String }
+
+
+init : ( Model, Cmd Msg )
+init =
+    ( { word = "world" }, Cmd.none )
+
+view : Model -> Html Msg
+view model =
+    div []
+        [ h1 [] [ text "Hello" ]
+        , p [] [ text model.world ]
+        ]
+```
 
 +++
 
