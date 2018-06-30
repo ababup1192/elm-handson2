@@ -1,8 +1,10 @@
-## Elm入門ハンズオン
-
-<style>
+<style type="text/css">
+<!--
 h2 { text-transform: none; }
+-->
 </style>
+
+## Elm入門ハンズオン
 
 ![](./elm-logo.png)
 
