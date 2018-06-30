@@ -217,7 +217,6 @@ view model =
 type alias Model =
     { hText : String, pText : String }
 
-
 init : ( Model, Cmd Msg )
 init =
     ( { hText = "Hello", pText = "world" }, Cmd.none )
@@ -255,7 +254,7 @@ init =
 
 ## EventでModelを書き換える
 
-Msgは大文字から始まる好みの名前で定義できます。updateでは、msgを*case*式で分岐をおこない、modelの更新をおこないます。レコード更新で、wordの値を書き換えた新しいレコードを生成しています)REPLで確認してみましょう)。viewでは、onClick時に*Press*のMsgを発火しています。
+typeキーワードでMsgを定義し、update関数はMsgを分岐し、modelを更新します。view関数は、onClick関数でMsgを発火します。
 
 ```elm
 type Msg
