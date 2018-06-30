@@ -1,6 +1,8 @@
 <style type="text/css">
 <!--
 * { text-transform: none !important; }
+.reveal p { font-size: 10px; }
+.reveal ul li { font-size: 10px; }
 -->
 </style>
 
