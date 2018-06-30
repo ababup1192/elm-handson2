@@ -330,3 +330,29 @@ But it is:
     Msg
 ```
 
++++
+
+## EventでModelを書き換える
+
+- MsgをStringが受け取れる形にする
+- case式のパターンマッチでもStringを使い、modelのレコードを更新する
+- onInputでは、ラムダ式(無名関数)を用いてMsgを発火する
+
+```elm
+type Msg
+    = NewWord String
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        NewWord w ->
+            ( { model | word = w }, Cmd.none )
+
+view : Model -> Html Msg
+view { word } =
+    div []
+        [ input [ type_ "text", onInput (\w -> NewWord w) ] []
+        , h1 [] [ text word ]]
+```
+
+
