@@ -1,6 +1,6 @@
 <style type="text/css">
 <!--
-h2 { text-transform: none; }
+* { text-transform: none !important; }
 -->
 </style>
 
