@@ -119,7 +119,7 @@ index.html
 
 ## プロジェクト構成
 
-elmが仮想DOMを生成し、`index.html`のdivタグに埋め込まれる。
+elmが仮想DOMを生成し、*index.html*のdivタグに埋め込まれる。
 
 index.js
 ```js
@@ -136,7 +136,17 @@ registerServiceWorker();
 
 ## プロジェクト構成
 
+view関数では、仮想DOMを生成しています。お好きなメッセージに変えてみましょう。
 
+Main.elm
+```elm
+view : Model -> Html Msg
+view model =
+    div []
+        [ img [ src "/logo.svg" ] []
+        , h1 [] [ text "Your Elm App is working!" ]
+        ]
+```
 
 +++
 
