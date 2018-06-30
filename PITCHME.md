@@ -209,21 +209,69 @@ view model =
 
 +++
 
+## Modelを用いて描画をする
+
+アプリケーションの状態はModelで表されます。型aliasで定義をしinitで初期値を定義します。viewは、Modelを用いて描画が行われます。
 
 ```elm
+type alias Model =
+    { hText : String, pText : String }
+
+
+init : ( Model, Cmd Msg )
+init =
+    ( { hText = "Hello", pText = "world" }, Cmd.none )
+
+view : Model -> Html Msg
+-- view { hText, pText } =
+view model =
+    div []
+        [ h1 [] [ text model.hText ]
+        , p [] [ text model.pText ]
+        ]
+```
+
++++
+
+## EventでModelを書き換える
+
+モジュールのimportとModelの定義は以下のようになります。(次ページへ続く)
+
+```elm
+import Html exposing (Html, text, div, h1, input)
+import Html.Attributes exposing (type_, value)
+import Html.Events exposing (onClick)
+
 type alias Model =
     { word : String }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( { word = "world" }, Cmd.none )
+    ( { word = "" }, Cmd.none )
+```
+
++++
+
+## EventでModelを書き換える
+
+Msgは大文字から始まる好みの名前で定義できます。updateでは、msgを*case*式で分岐をおこない、modelの更新をおこないます。レコード更新で、wordの値を書き換えた新しいレコードを生成しています)REPLで確認してみましょう)。viewでは、onClick時に*Press*のMsgを発火しています。
+
+```elm
+type Msg
+    = Press
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        Press ->
+            ( { model | word = "Button is pressed!" }, Cmd.none )
 
 view : Model -> Html Msg
-view model =
+view { word } =
     div []
-        [ h1 [] [ text "Hello" ]
-        , p [] [ text model.world ]
+        [ input [ type_ "button", value "Press!", onClick Press ] []
+        , h1 [] [ text word ]
         ]
 ```
 
