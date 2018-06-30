@@ -15,7 +15,7 @@
 
 The Elm Architecture編
 
-@[ababupdownba](https://twitter.com/ababupdownba)
+@ [ababupdownba](https://twitter.com/ababupdownba)
 
 ---
 
