@@ -73,6 +73,8 @@ The Elm Architecture編
 
 ## 実践 - Hello World
 
+create-elm-appは、webpackをラップしているelmプロジェクト生成ツール
+
 ```
 $ create-elm-app tea-hello
 $ cd tea-hello
@@ -94,6 +96,49 @@ open browser http://localhost:3000/
         - html, ico, svg, json...
     - tests
         - Tests.elm, elm-package.json(テスト用)
+
++++
+
+## プロジェクト構成
+
+divタグのみが存在
+
+index.html
+```html
+// 中略
+<body>
+    <noscript>
+        You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+</body>
+</html>
+```
+
++++
+
+## プロジェクト構成
+
+elmが仮想DOMを生成し、`index.html`のdivタグに埋め込まれる。
+
+index.js
+```js
+import './main.css';
+import { Main } from './Main.elm';
+import registerServiceWorker from './registerServiceWorker';
+
+Main.embed(document.getElementById('root'));
+
+registerServiceWorker();
+```
+
++++
+
+## プロジェクト構成
+
+
+
++++
 
 ## 式とは
 
