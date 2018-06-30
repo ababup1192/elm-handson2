@@ -2,10 +2,10 @@
 <!--
 .reveal h2 {
     text-transform: none;
-    font-size: 30px;
+    font-size: 36px;
 }
-.reveal p { font-size: 24px; }
-.reveal ul li { font-size: 24px; }
+.reveal p { font-size: 30px; }
+.reveal ul li { font-size: 30px; }
 -->
 </style>
 
@@ -15,11 +15,11 @@
 
 The Elm Architecture編
 
-[@ababupdownba](https://twitter.com/ababupdownba)
+@[ababupdownba](https://twitter.com/ababupdownba)
 
 ---
 
-### Elmってどんな言語？
+## Elmってどんな言語？
 
 - 信頼できるWebアプリのためのめっっっっっちゃ楽しい言語(Elm公式ページ意訳)
     - AltJavaScript
@@ -29,7 +29,7 @@ The Elm Architecture編
 
 ---
 
-### このハンズオンのターゲット
+## このハンズオンのターゲット
 
 - Elmを一切知らない方
     - 始めたばかりで右も左もわからない方
