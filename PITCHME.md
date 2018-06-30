@@ -355,4 +355,161 @@ view { word } =
         , h1 [] [ text word ]]
 ```
 
++++
+
+## List (Html msg)
+
+li等の複数の値をリストの値から生成したいとします。
+
+```elm
+view : Model -> Html Msg
+view model =
+    ul []
+        [ li [] [ text "foo" ]
+        , li [] [ text "bar" ]
+        , li [] [ text "hoge" ]
+        ]
+```
+
++++
+
+## List (Html msg)
+
+- ModelでList Stringを定義し、initで初期データを入れる
+- List Stringをliのリストつまり List (Html Msg)に変換する(words2li)
+- view関数でwords2liを呼び出す
+
+```elm
+type alias Model =
+    { words : List String }
+
+
+init : ( Model, Cmd Msg )
+init =
+    ( { words = [ "foo", "bar", "hoge", "fuga" ] }, Cmd.none )
+
+view : Model -> Html Msg
+view { words } =
+    ul [] (words2li words)
+
+words2li : List String -> List (Html Msg)
+words2li words =
+    List.map (\w -> li [] [ text w ]) words
+```
+
++++
+
+## List (Html msg)
+
+let式を用いれば、ローカル関数として定義できる。
+
+```elm
+view : Model -> Html Msg
+view { words } =
+    let
+        words2li words =
+            List.map (\w -> li [] [ text w ]) words
+    in
+        ul [] (words2li words)
+```
+
++++
+
+## List (Html msg)
+
+- 1-100の整数を作り出し
+- 偶数だけをfilterで取り出す
+- 数字を文字列に変換する
+- 最後にliにする
+- あれだけど大変・・・読みづらい・・・
+
++++
+
+```
+view : Model -> Html Msg
+view { words } =
+    let
+        evenList =
+            List.map (\x -> li [] [ text x ])
+                (List.map (\x -> toString x)
+                    (List.filter (\x -> x % 2 == 0)
+                        (List.range 1 100)
+                    )
+                )
+    in
+        ul [] evenList
+```
+
++++
+
+## List (Html msg)
+
+そんなときはパイプ演算子(|>)で、データが流れるように
+
+```
+view : Model -> Html Msg
+view { words } =
+    let
+        evenList =
+            List.range 1 100
+                |> List.filter (\x -> x % 2 == 0)
+                |> List.map toString
+                |> List.map (\x -> li [] [ text x ])
+    in
+        ul [] evenList
+```
+
+---
+
+## Incremental Search
+
+このスライドと参考URLを元に解いてみましょう。検索条件は、部分一致とします。
+
+- [テンプレート](https://github.com/ababup1192/elm-incremental-search)
+- Elmドキュメント
+    - [Html](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html)
+    - [String](http://package.elm-lang.org/packages/elm-lang/core/latest/String)
+    - [List](http://package.elm-lang.org/packages/elm-lang/core/latest/List)
+
++++
+
+## Incremental Search 発展問題
+
+チャレンジャーなあなたは次の問題にも挑戦してみましょう。
+
+- 表示件数の表示
+- 部分一致・前方一致・後方一致を切り替える
+- 一致部分を太文字にする
+
+---
+
+## おまけ - Unit Test
+
+Elmはイミュータブル(不変)なデータ構造を主に扱う言語なので、関数は必ず値を返します。そのため、Unit Testを書くのは容易です。
+
+Main.elm
+```elm
+てすとこーど
+```
+
++++
+
+## おまけ - 気になったこと
+
+次のことが気になった方は、是非Elmを継続してやってみましょう！
+
+- このおまじないは、なんだったんだろう
+     - subscriptions = always Sub.none
+- 副作用はどう扱うんだろう？
+- JavaScriptを呼び出したい
+- SPAしてみたい
+- WEB APIを呼び出したい
+- プロジェクトの規模が大きくなっても破綻しない？
+
+---
+
+## 付録
+
+途中説明不足だったところの補足
+
 
