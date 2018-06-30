@@ -1,5 +1,9 @@
 ## Elm入門ハンズオン
 
+<style>
+h2 { text-transform: none; }
+</style>
+
 ![](./elm-logo.png)
 
 The Elm Architecture編
@@ -275,5 +279,12 @@ view { word } =
         ]
 ```
 
++++
 
+
+## EventでModelを書き換える
+
+```elm
+
+```
 
