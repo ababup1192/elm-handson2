@@ -254,7 +254,8 @@ init =
 
 ## EventでModelを書き換える
 
-typeキーワードでMsgを定義し、update関数はMsgを分岐し、modelを更新します。view関数は、onClick関数でMsgを発火します。
+- typeでMsgを定義、updateで分岐・modelを更新
+- view関数のonClick関数がMsgを発火
 
 ```elm
 type Msg
