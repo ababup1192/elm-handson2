@@ -50,7 +50,7 @@ The Elm Architecture編
 
 ## 環境構築
 
-- [環境構築資料](https://gist.github.com/ababup1192/a1a091bcc0e535d180544639f531302c)
+- [資料](https://gist.github.com/ababup1192/a1a091bcc0e535d180544639f531302c)
 
 ---
 
@@ -63,7 +63,8 @@ The Elm Architecture編
 
 +++
 
-- 実際の実装
+## The Elm Architecture の例
+
 - [カウンタアプリ](http://elm-lang.org/examples/buttons)
 
 ![TEA Counter](https://github.com/ababup1192/elm-handson2/blob/master/img/counter.png?raw=true)
