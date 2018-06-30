@@ -137,6 +137,7 @@ registerServiceWorker();
 ## プロジェクト構成
 
 view関数では、仮想DOMを生成しています。お好きなメッセージに変えてみましょう。
+(他の関数については、眺めておいてください。)
 
 Main.elm
 ```elm
@@ -148,19 +149,62 @@ view model =
         ]
 ```
 
+---
+
+以下２つは同一です。
+
+```elm
+-- text : String -> Html msg
+view : Model -> Html Msg
+view model =
+    text "hello"
+```
+
+```html
+<!-- HTML上のテキスト -->
+hello
+```
+
 +++
 
-## 式とは
+## Html Msg
 
-- 何でしょうか？
-    - 評価されることで値になるもの|
-    - 値も式|
-- 利点はなんでしょうか？|
-    - 文とは違い、式は式に連続して渡すことができる|
-        - 一時変数を減らす(名付けのコストを減らす)|
-    - テスタビリティが上がる|
-        - 純粋関数の為 式(を評価した値)の等価性が保証される|
----
+タグを表す関数は、属性のリストと*HTML msg*のリストを受け取り、自身も*Html msg*という型で表されます。
+
+```elm
+-- p : List (Attribute msg) -> List (Html msg) -> Html msg
+view : Model -> Html Msg
+view model =
+    p [ id "foo", class "bar" ] [text "hello"]
+```
+
+```html
+<p id="foo", class="bar">hello</p>
+```
+
++++
+
+## Html Msg
+
+```elm
+-- div : List (Attribute msg) -> List (Html msg) -> Html msg
+view : Model -> Html Msg
+view model =
+    div []
+        [ h1 [] [ text "Hello" ]
+        , p [] [ text "elm" ]
+        ]
+
+ [ id "foo", class "bar" ] []
+```
+
+```html
+<p id="foo", class="bar"></p>
+```
+
+
+
++++
 
 ## リテラル: Bool, number
 
