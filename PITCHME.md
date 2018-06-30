@@ -2,7 +2,7 @@
 <!--
 .reveal h2 {
     text-transform: none;
-    font-size: 36px;
+    font-size: 42px;
 }
 .reveal p { font-size: 30px; }
 .reveal ul li { font-size: 30px; }
@@ -15,7 +15,7 @@
 
 The Elm Architecture編
 
-@ [ababupdownba](https://twitter.com/ababupdownba)
+[@ababupdownba](https://twitter.com/ababupdownba)
 
 ---
 
