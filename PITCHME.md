@@ -147,8 +147,9 @@ registerServiceWorker();
 
 ## プロジェクト構成
 
-view関数では、仮想DOMを生成しています。お好きなメッセージに変えてみましょう。
-(他の関数については、眺めておいてください。)
+- view関数では、仮想DOMを生成している
+- 好きなメッセージに変えてみよう
+- (他の関数も眺めてみよう)
 
 Main.elm
 ```elm
@@ -162,9 +163,12 @@ view model =
 
 ---
 
-## Html Msg
+## Html msg
 
-ただのHTMLの文字列は、*text*関数で表します。空の要素を表すには、*text ""*と記述します。
+ここからは、Elm上でHTMLを表現する*Html msg*型について見ていく。
+
+- HTMLのプレーンな文字列(aタグの中身等)は、*text*関数で表す
+- 空の要素を表すには、*text ""*と表記する
 
 ```elm
 -- text : String -> Html msg
@@ -180,9 +184,9 @@ hello
 
 +++
 
-## Html Msg
+## Html msg
 
-タグを表す関数は、属性のリストと*Html msg*のリストを受け取り、自身も*Html msg*という型で表されます。
+タグを表す関数は、属性のリストと*Html msg*のリストを受け取り、自身も*Html msg*という型で表さる。
 
 ```elm
 -- p : List (Attribute msg) -> List (Html msg) -> Html msg
@@ -197,9 +201,9 @@ view model =
 
 +++
 
-## Html Msg
+## Html msg
 
-リストに複数の*Html msg*を入れてみましょう。
+divタグを表す関数の*Html msg*リストの引数に複数の*Html msg*を渡す。
 
 ```elm
 -- div : List (Attribute msg) -> List (Html msg) -> Html msg
@@ -222,7 +226,11 @@ view model =
 
 ## Modelを用いて描画をする
 
-アプリケーションの状態はModelで表されます。型aliasで定義をしinitで初期値を定義します。viewは、Modelを用いて描画が行われます。
+アプリケーションの状態はModelで表される。Modelとview関数の連携について見ていく。
+
+- 型aliasでModelを定義し、init関数で初期値を定義する
+- viewは、Modelを用いてHtml msg型の値を返す
+- view関数の引数では、パターンマッチで構造を分解できる
 
 ```elm
 type alias Model =
