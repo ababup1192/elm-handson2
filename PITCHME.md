@@ -479,7 +479,7 @@ view { words } =
 
 ## おまけ - Unit Test
 
-Elmはイミュータブル(不変)なデータ構造を主に扱う言語なので、関数は必ず値を返します。そのため、Unit Testを書くのは容易です。今回のIncremental Searchを実装するために、以下のシグネチャの関数を用意したとします(次のページ)。
+Elmはイミュータブル(不変)なデータ構造を主に扱う言語です。そのため関数は必ず値を返します。そのため、Unit Testを書くのは容易です。今回のIncremental Searchを実装するために、以下のシグネチャの関数を用意したとします(次のページ)。
 
 Main.elm
 ```elm
@@ -494,9 +494,9 @@ wordToListItem : String -> Html Msg
 
 +++
 
-すると次のようにテストコードを書けます。
+ユニットテストは、*test*関数の引数に、descriptionと*Expect.equal*の戻り値を渡すことで書けます。
 
-Tests.elm
+Tests.elm(要スクロール)
 
 ```elm
 [ test "partialMatch empty words" <|
