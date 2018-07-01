@@ -479,11 +479,55 @@ view { words } =
 
 ## おまけ - Unit Test
 
-Elmはイミュータブル(不変)なデータ構造を主に扱う言語なので、関数は必ず値を返します。そのため、Unit Testを書くのは容易です。
+Elmはイミュータブル(不変)なデータ構造を主に扱う言語なので、関数は必ず値を返します。そのため、Unit Testを書くのは容易です。今回のIncremental Searchを実装するために、以下のシグネチャの関数を用意したとします(次のページ)。
 
 Main.elm
 ```elm
-てすとこーど
+{-| 部分一致した文字列のみをフィルタリングする
+-}
+partialMatch : List String -> String -> List String
+
+{-| 文字列をliでラップする
+-}
+wordToListItem : String -> Html Msg
+```
+
++++
+
+すると次のようにテストコードを書けます。
+
+Tests.elm
+
+```elm
+[ test "partialMatch empty words" <|
+    \_ ->
+        let
+            matchedWords =
+                partialMatch [] "ab"
+        in
+            Expect.equal [] matchedWords
+, test "partialMatch empty contain word" <|
+    \_ ->
+        let
+            matchedWords =
+                partialMatch [ "a", "b", "ab", "abc" ] ""
+        in
+            Expect.equal [ "a", "b", "ab", "abc" ] matchedWords
+, test "partialMatch" <|
+    \_ ->
+        let
+            matchedWords =
+                partialMatch [ "a", "b", "ab", "abc" ] "b"
+        in
+            Expect.equal [ "b", "ab", "abc" ] matchedWords
+, test "wordToListItem" <|
+    \_ ->
+        let
+            listItem =
+                wordToListItem "item"
+        in
+            Expect.equal (li [] [ text "item" ]) listItem
+]
 ```
 
 +++
