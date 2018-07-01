@@ -131,7 +131,7 @@ index.html
 
 ## プロジェクト構成
 
-elmが仮想DOMを生成し、*index.html*のdivタグに埋め込まれる。
+elmがHTMLを生成し、*index.html*のdivタグに埋め込まれる。
 
 index.js
 ```js
@@ -145,7 +145,7 @@ Main.embed(document.getElementById('root'));
 
 ## プロジェクト構成
 
-- view関数では、仮想DOMを生成している
+- view関数では、HTML(DOM)を生成している
 - 好きなメッセージに変えてみよう
 - (他の関数も眺めてみよう)
 
