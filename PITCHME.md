@@ -252,7 +252,7 @@ view model =
 
 ## EventでModelを書き換える
 
-モジュールのimportとModelの定義は以下のようになります。(次ページへ続く)
+Eventは、viewからMsgを発行し処理を促す手段である。Msgを発行し、Modelを書き換えてみる。モジュールのimportとModelの定義は以下(次ページへ続く)。
 
 ```elm
 import Html exposing (Html, text, div, h1, input)
@@ -272,8 +272,8 @@ init =
 
 ## EventでModelを書き換える
 
-- typeでMsgを定義、updateで分岐・modelを更新
-- view関数のonClick関数がMsgを発火
+- typeでMsgを定義(*Press*)、updateで分岐・modelを更新
+- view関数のonClick関数(Event)がMsgを発火
 
 ```elm
 type Msg
@@ -297,7 +297,7 @@ view { word } =
 
 ## EventでModelを書き換える
 
-この様な形にするとコンパイルエラーが生じる(次ページへ)。
+*onInput*を用いて、input要素からの入力を受け取るとする。しかし、この様な形にするとコンパイルエラーが生じる(次ページへ続く)。
 
 ```elm
 type Msg
@@ -321,7 +321,7 @@ view { word } =
 
 ## EventでModelを書き換える
 
-onInputは、Stringを受け取ってMsgを返す関数を求める。
+onInputは、Stringを受け取ってMsgを返す関数を求める。NoOp(No Operation)は、Stringを受け取るMsgではない。
 
 ```elm
 The argument to function `onInput` is causing a mismatch.
@@ -341,8 +341,8 @@ But it is:
 
 ## EventでModelを書き換える
 
-- MsgをStringが受け取れる形にする
-- case式のパターンマッチでもStringを使い、modelのレコードを更新する
+- Stringを受け取るMsg(NewWord)を定義する
+- case式のパターンマッチでStringを取り出し、modelのレコードを更新する
 - onInputでは、ラムダ式(無名関数)を用いてMsgを発火する
 
 ```elm
@@ -366,7 +366,7 @@ view { word } =
 
 ## List (Html msg)
 
-li等の複数の値をリストの値から生成したいとします。
+li等の複数のタグをList Stringの値から生成したいとする。
 
 ```elm
 view : Model -> Html Msg
@@ -383,7 +383,7 @@ view model =
 ## List (Html msg)
 
 - ModelでList Stringを定義し、initで初期データを入れる
-- List Stringをliのリストつまり List (Html Msg)に変換する(words2li)
+- List Stringをliのリスト、つまりList (Html Msg)に変換する(words2li)
 - view関数でwords2liを呼び出す
 
 ```elm
@@ -423,7 +423,7 @@ view { words } =
 
 ## List (Html msg)
 
-- 1-100の整数から偶数だけを取り出し、liにする処理
+- 1-100の整数から偶数だけを取り出し、liに変える処理をする
 - あれだけど大変・・・読みづらい・・・
 
 ```elm
@@ -464,7 +464,7 @@ view { words } =
 
 ## Incremental Search
 
-このスライドと参考URLを元に解いてみましょう。検索条件は、部分一致とします。
+このスライドと参考URLを元に解いてみよう。検索条件は、部分一致とする。答えは、テンプレートリポジトリの*answer*ブランチに。
 
 - [テンプレート](https://github.com/ababup1192/elm-incremental-search)
 - Elmドキュメント
@@ -476,7 +476,7 @@ view { words } =
 
 ## Incremental Search 発展問題
 
-チャレンジャーなあなたは次の問題にも挑戦してみましょう。
+チャレンジャーなあなたは次の問題にも挑戦してみよう！
 
 - 表示件数の表示
 - 部分一致・前方一致・後方一致を切り替える
@@ -486,7 +486,7 @@ view { words } =
 
 ## おまけ - Unit Test
 
-Elmはイミュータブル(不変)なデータ構造を主に扱う言語です。そのため関数は必ず値を返します。そのため、Unit Testを書くのは容易です。今回のIncremental Searchを実装するために、以下のシグネチャの関数を用意したとします(次のページ)。
+Elmはイミュータブル(不変)なデータ構造を主に扱う言語である。そのため関数は必ず値を返す。そのため、Unit Testを書くのは容易である。今回のIncremental Searchを実装するために、以下のシグネチャの関数を用意したとする(次のページへ続く)。
 
 Main.elm
 ```elm
@@ -501,7 +501,7 @@ wordToListItem : String -> Html Msg
 
 +++
 
-ユニットテストは、*test*関数の引数に、descriptionと*Expect.equal*の戻り値を渡すことで書けます。
+ユニットテストは、*test*関数の引数に、descriptionと*Expect.equal*の戻り値を渡すことで書ける。
 
 Tests.elm(要スクロール)
 
@@ -541,7 +541,7 @@ Tests.elm(要スクロール)
 
 ## おまけ - 気になったこと
 
-次のことが気になった方は、是非Elmを継続してやってみましょう！
+次のことが気になった方は、是非Elmを継続してやってみよう！
 
 - このおまじないは、なんだったんだろう
      - subscriptions = always Sub.none
