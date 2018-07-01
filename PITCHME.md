@@ -186,7 +186,7 @@ hello
 
 ## Html msg
 
-タグを表す関数は、属性のリストと*Html msg*のリストを受け取り、自身も*Html msg*という型で表さる。
+タグを表す関数は、属性のリストと*Html msg*のリストの2引数を受け取り、自身も*Html msg*という型で表さる。
 
 ```elm
 -- p : List (Attribute msg) -> List (Html msg) -> Html msg
@@ -203,7 +203,7 @@ view model =
 
 ## Html msg
 
-divタグを表す関数の*Html msg*リストの引数に複数の*Html msg*を渡す。
+divタグを表す関数の第2引数(*List (Html msg)*)にh1, pを渡す。
 
 ```elm
 -- div : List (Attribute msg) -> List (Html msg) -> Html msg
@@ -226,11 +226,10 @@ view model =
 
 ## Modelを用いて描画をする
 
-アプリケーションの状態はModelで表される。Modelとview関数の連携について見ていく。
+Model(状態)とview関数の連携について見ていく。
 
 - 型aliasでModelを定義し、init関数で初期値を定義する
 - viewは、Modelを用いてHtml msg型の値を返す
-- view関数の引数では、パターンマッチで構造を分解できる
 
 ```elm
 type alias Model =
