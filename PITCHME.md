@@ -55,6 +55,7 @@ The Elm Architecture編
 - 実践 The Elm Architecture
 - Incremental Search演習
 - おまけ
+- 付録
 - アンケート
 
 ---
@@ -136,11 +137,8 @@ index.js
 ```js
 import './main.css';
 import { Main } from './Main.elm';
-import registerServiceWorker from './registerServiceWorker';
 
 Main.embed(document.getElementById('root'));
-
-registerServiceWorker();
 ```
 
 +++
@@ -553,8 +551,168 @@ Tests.elm(要スクロール)
 
 ---
 
-## 付録
+## 付録 - 関数
 
-途中説明不足だったところの補足
+```elm
+> stdBMI = 22.0
+> bmi h = (h ^ 2) * stdBMI
+<function> : Float -> Float
+> bmi 1.75
+(1.75 ^ 2) * stdBMI
+3.0625 * 22.0
+67.35
+```
+@[1](22.0(Float)を返す関数。変数ではない。その為、再代入不可能。)
+@[4-7](関数bmiは以下のように評価されます。)
+@[2,4](関数bmiの束縛変数(仮引数)hを実引数1.75で束縛します。)
+@[4-5](本体の式を評価していきます。束縛し評価することを「関数適用」と呼びます。)
+@[6-7](あとは、stdBMIを評価した値を束縛し、計算式を評価していきます。)
+@[1-7](グローバル変数・一時変数・キーボード入力・ファイル読み込みなどは、関数に一切含まれない。そのような関数を「純粋関数」と呼びます。)
+
++++
+
+## 付録 - 関数
+
+```elm
+> (\h -> (h ^ 2) * stdBMI) 1.75
+67.375 : Float
+> bmi = (\h -> (h ^ 2) * stdBMI)
+```
+@[1-2](このように関数から名前を取り除き、)
+@[1-2](\変数 -> 本体の式)
+@[1-2](このカタチを匿名関数(ラムダ式、ラムダ関数、ラムダ抽象)と呼びます。)
+@[3](λ抽象自体も式なので名前を付けられます。)
+@[1-3]( 後述しますが、式なので別の関数や式に渡すことも、関数の結果としてλ抽象を返すこともできます。
+@[1-3](このような特徴を持った言語の関数を「第一級関数」(ファーストクラスファンクション)と呼びます。)
+
++++
+
+## 付録 - List
+
+```elm
+> [1, 2, 3, 4, 5]
+[1,2,3,4,5] : List number
+> [1, "a"]
+      ^^^
+The 1st entry has this type:
+    number
+But the 2nd is:
+    String
+> []
+[] : List a
+```
+@[1-2](Listを表すリテラルです。リストはある型の要素が0個以上の集まってできる型です。)
+@[3-8](リストに入る型は任意ですが、リスト全体で単一の型で無ければなりません。)
+@[9-10](REPL上では空のリストを作った場合に、どのような型かを予測することはできません。)
+@[9-10](Elmでは任意の型を表すとき「a, b, c, ...」のように、予約語を除いた小文字から始まる**型変数**を利用します。)
+@[9-10](他の言語で言う、ジェネリクスにおける型パラメータなどと同じ意味を持ちます。)
+
++++
+
+## 付録 - レコード
+
+```elm
+> record = {x = 1, y = 2, z = 3}
+{ x = 1, y = 2, z = 3 } : { x : number, y : number1, z : number2 }
+> record.x
+1 : number
+> .y record
+2 : number
+> { record | x = 10, z = record.y + 20 }
+{ x = 10, y = 2, z = 22 } : { y : number1, x : number, z : number1 }
+```
+@[1-2](レコードはkeyとvalueからなるセットです。JavaScriptのオブジェクトに似ています。)
+@[3-4](JavaScriptのオブジェクトのように、*record*.x のようにアクセスできます。)
+@[5-6](また、*.field*のような関数がレコードに対して生成されます。)
+@[7-8]({ レコード変数 | 変数束縛 } の形でレコードの値を変更した、新しいレコードを生成します。)
+
++++
+
+## 付録 - タプル
+
+```elm
+> (1, 2, 3, 4, 5)
+(1,2,3,4,5) : ( number, number1, number2, number3, number4 )
+> (1, "1", True, [(1, 2), (3, 4)], [["a", "b"], ["c", "d"]])
+(1,"1",True,[(1,2),(3,4)],[["a","b"],["c","d"]])
+    : ( number
+      , String
+      , Bool
+      , List ( number1, number2 )
+      , List (List String)
+      )
+> ()
+() : ()
+```
+@[1,2](タプルを表すリテラルです。タプルは複数の型の0個以上の要素からなる型です。)
+@[1,2](numberのように不定の型の場合、要素ごとに別物として表すため違うnumber型として推論されます。)
+@[3-10](複雑なタプルの例)
+@[11-12](空のタプルは**Unit**とも言われ、何もない型を表すときに使われます。)
+
++++
+
+## 付録 - Type Alias
+
+```elm
+> type alias Name = String
+> type alias Age = Int
+> type alias User = { name: Name, age: Age }
+-- getName : User -> Name
+> getName user = user.name
+<function> : { b | name : a } -> a
+getName (User "john" 15)
+"john" : Repl.Name
+```
+@[1-3](可読性の高いコードを書くためには、*type alias*で型の別名を付けることもできます。Elmでは型の設計をおこなってから実装を考える型駆動開発の考え方も有効です。)
+@[3,7](レコード型のtype aliasは少し特殊な事情があります。(レコードalias フィールドの値, フィールド値, ...) のように本来の書き方をショートカットできます。)
+
++++
+
+## 付録 - Union Types
+
+```
+> type Money = Dollar | EURO | JPY
+> Dollar
+Dollar : Money
+> EURO
+EURO : Money
+> JPY
+JPY : Money
+> JPY == JPY -- Union Typesは等価性を備えています。
+True : Bool
+```
+@[1](UnionTypesは、stringやbool, nullをよりも直感的に分岐した型を表すことができます。)
+@[1](Tagged UnionやADT(Algebraic Data Type: 代数的データ型)と呼ばれます。)
+@[1](Dollar, EURO, JPY はMoney型を返す関数で値コンストラクタと呼ばれます。)
 
 
++++
+
+## 付録 - Union Types
+
+```
+toJPYRate : Money -> Float
+toJPYRate money =
+    case money of
+        Dollar ->
+            109.134
+
+        EURO ->
+            129.462
+
+        JPY ->
+            1
+```
+@[3-11](すべての分岐が無ければコンパイルエラー。つまり網羅性を保証しています。)
+
++++
+
+## 付録 - ハンズオン文法編
+
+付録でも足らない方は、[こちら](https://gitpitch.com/ababup1192/elm-handson1)
+
+---
+
+## アンケート
+
+フィードバックのために[アンケート](https://docs.google.com/forms/d/e/1FAIpQLSfm9S54qv0yj8kzE49sDQmr9N8_bPAhH6JroKUoiE_dR4tOpg/viewform)にご協力お願いします。
