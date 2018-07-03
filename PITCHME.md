@@ -187,6 +187,10 @@ hello
 タグを表す関数は、属性のリストと*Html msg*のリストの2引数を受け取り、自身も*Html msg*という型で表さる。
 
 ```elm
+-- モジュールのimport
+import Html exposing (Html, text, div, h1, img, p) -- pタグを追加
+import Html.Attributes exposing (src) -- 属性を増やす場合こちら
+
 -- p : List (Attribute msg) -> List (Html msg) -> Html msg
 view : Model -> Html Msg
 view model =
@@ -255,7 +259,7 @@ Eventは、viewからMsgを発行し処理を促す手段である。Msgを発�
 ```elm
 import Html exposing (Html, text, div, h1, input)
 import Html.Attributes exposing (type_, value)
-import Html.Events exposing (onClick)
+import Html.Events exposing (onClick) -- 今後Eventを増やす場合はこちら
 
 type alias Model =
     { word : String }
@@ -339,7 +343,7 @@ But it is:
 
 ## EventでModelを書き換える
 
-- Stringを受け取るMsg(NewWord)を定義する
+- Stringを受け取るMsg(NewWord String)を定義する
 - case式のパターンマッチでStringを取り出し、modelのレコードを更新する
 - onInputでは、ラムダ式(無名関数)を用いてMsgを発火する
 
