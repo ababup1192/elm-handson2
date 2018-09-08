@@ -85,13 +85,14 @@ The Elm Architecture編
 
 ## 実践 - Hello World
 
-create-elm-appは、webpackをラップしているelmプロジェクト生成ツール
+
 
 ```
-$ create-elm-app tea-hello
+$ git clone git@github.com:ababup1192/elm-dev-env.git tea-hello
 $ cd tea-hello
-$ elm-app start
-open browser http://localhost:3000/
+$ npm i
+$ npm start
+open browser http://localhost:8080/
 ```
 
 +++
@@ -99,15 +100,13 @@ open browser http://localhost:3000/
 ## プロジェクト構成
 
 - Project Root
-    - elm-package.json
+    - elm.json
     - elm-stuff
         - elmライブラリ群
     - src
-        - elm, js, css...
-    - public
-        - html, ico, svg, json...
+        - elm, html, js, css...
     - tests
-        - Tests.elm, elm-package.json(テスト用)
+        - Tests.elm
 
 +++
 
@@ -119,10 +118,7 @@ index.html
 ```html
 // 中略
 <body>
-    <noscript>
-        You need to enable JavaScript to run this app.
-    </noscript>
-    <div id="root"></div>
+    <div id="main"></div>
 </body>
 </html>
 ```
@@ -131,14 +127,18 @@ index.html
 
 ## プロジェクト構成
 
-elmがHTMLを生成し、*index.html*のdivタグに埋め込まれる。
+elmが(仮想)DOMを生成し、*index.html*のdivの中に埋め込まれる。
 
 index.js
 ```js
-import './main.css';
-import { Main } from './Main.elm';
+require('./main.scss');
 
-Main.embed(document.getElementById('root'));
+const Elm = require('./Main.elm');
+const mountNode = document.getElementById('main');
+
+const app = Elm.Elm.Main.init({
+  node: document.getElementById('main')
+});
 ```
 
 +++
