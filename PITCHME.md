@@ -470,9 +470,10 @@ view { words } =
 
 - [テンプレート](https://github.com/ababup1192/elm-incremental-search)
 - Elmドキュメント
-    - [Html](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html)
-    - [String](http://package.elm-lang.org/packages/elm-lang/core/latest/String)
-    - [List](http://package.elm-lang.org/packages/elm-lang/core/latest/List)
+    - [公式ガイド](https://guide.elm-lang.jp)(絶賛翻訳中)
+    - [Html](https://package.elm-lang.org/packages/elm/html/latest/)
+    - [String](https://package.elm-lang.org/packages/elm/core/latest/String)
+    - [List](https://package.elm-lang.org/packages/elm/core/latest/List)
 
 +++
 
@@ -558,6 +559,8 @@ Tests.elm(要スクロール)
 ## アンケート
 
 フィードバックのために[アンケート](https://docs.google.com/forms/d/e/1FAIpQLSfm9S54qv0yj8kzE49sDQmr9N8_bPAhH6JroKUoiE_dR4tOpg/viewform)にご協力お願いします。
+
+elm-jp [discord](https://discord.gg/cndFanK) もよろしくおねがいします。
 
 ---
 
@@ -719,5 +722,5 @@ toJPYRate money =
 
 ## 付録 - ハンズオン文法編
 
-付録でも足らない方は、[こちら](https://gitpitch.com/ababup1192/elm-handson1)
+付録でも足らない方は、[こちら](https://gitpitch.com/ababup1192/elm-handson1)(v0.18)
 
