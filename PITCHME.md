@@ -237,8 +237,8 @@ Model(状態)とview関数の連携について見ていく。
 type alias Model =
     { hText : String, pText : String }
 
-init : ( Model, Cmd Msg )
-init =
+init : flags -> ( Model, Cmd Msg )
+init _ =
     ( { hText = "Hello", pText = "world" }, Cmd.none )
 
 view : Model -> Html Msg
@@ -265,8 +265,8 @@ type alias Model =
     { word : String }
 
 
-init : ( Model, Cmd Msg )
-init =
+init : flags -> ( Model, Cmd Msg )
+init _ =
     ( { word = "" }, Cmd.none )
 ```
 
@@ -392,8 +392,8 @@ view model =
 type alias Model =
     { words : List String }
 
-init : ( Model, Cmd Msg )
-init =
+init : flags -> ( Model, Cmd Msg )
+init _ =
     ( { words = [ "foo", "bar", "hoge", "fuga" ] }, Cmd.none )
 
 view : Model -> Html Msg
@@ -415,10 +415,10 @@ let式を用いれば、ローカル関数として定義できる。
 view : Model -> Html Msg
 view { words } =
     let
-        words2li words =
+        words2li =
             List.map (\w -> li [] [ text w ]) words
     in
-        ul [] (words2li words)
+        ul [] words2li
 ```
 
 +++
