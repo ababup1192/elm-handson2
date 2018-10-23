@@ -496,10 +496,6 @@ Main.elm
 {-| 部分一致した文字列のみをフィルタリングする
 -}
 partialMatch : List String -> String -> List String
-
-{-| 文字列をliでラップする
--}
-wordToListItem : String -> Html Msg
 ```
 
 +++
