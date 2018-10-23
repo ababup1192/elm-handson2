@@ -77,7 +77,7 @@ The Elm Architecture編
 
 ## The Elm Architecture の例
 
-[カウンタアプリ](http://elm-lang.org/examples/buttons)
+[カウンタアプリ](https://ellie-app.com/37gVmD7Tm9Ma1)
 
 ![TEA Counter](https://github.com/ababup1192/elm-handson2/blob/master/img/counter.png?raw=true)
 
@@ -489,7 +489,7 @@ view { words } =
 
 ## おまけ - Unit Test
 
-Elmはイミュータブル(不変)なデータ構造を主に扱う言語である。そのため関数は必ず値を返す。そのため、Unit Testを書くのは容易である。今回のIncremental Searchを実装するために、以下のシグネチャの関数を用意したとする(次のページへ続く)。
+Elmはイミュータブル(不変)なデータ構造を主に扱う言語である。そのため関数は必ず値を返す。そのため、Unit Testを書くのは容易である。出来るのであればテストファーストでTDDをするのが好ましい(TDDハンズオン予定)。今回のIncremental Searchを実装するために、以下のシグネチャの関数を用意したとする(次のページへ続く)。
 
 Main.elm
 ```elm
@@ -530,13 +530,6 @@ Tests.elm(要スクロール)
                 partialMatch [ "a", "b", "ab", "abc" ] "b"
         in
             Expect.equal [ "b", "ab", "abc" ] matchedWords
-, test "wordToListItem" <|
-    \_ ->
-        let
-            listItem =
-                wordToListItem "item"
-        in
-            Expect.equal (li [] [ text "item" ]) listItem
 ]
 ```
 
