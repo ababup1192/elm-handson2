@@ -163,7 +163,7 @@ view model =
 
 ## Html msg
 
-ここからは、Elm上でHTMLを表現する*Html msg*型について見ていく。
+ここからは、Elm上でHTMLを表現する*Html msg*型について見ていく。[コード](https://ellie-app.com/3K9Q4WWqVxXa1)
 
 - HTMLのプレーンな文字列(aタグの中身等)は、*text*関数で表す
 - 空の要素を表すには、*text ""*と表記する
@@ -184,7 +184,7 @@ hello
 
 ## Html msg
 
-タグを表す関数は、属性のリストと*Html msg*のリストの2引数を受け取り、自身も*Html msg*という型で表さる。
+タグを表す関数は、属性のリストと*Html msg*のリストの2引数を受け取り、自身も*Html msg*という型で表される。[コード](https://ellie-app.com/3K9RNS3ZY4ma1)
 
 ```elm
 -- モジュールのimport
@@ -205,7 +205,7 @@ view model =
 
 ## Html msg
 
-divタグを表す関数の第2引数(*List (Html msg)*)にh1, pを渡す。
+divタグを表す関数の第2引数(*List (Html msg)*)にh1, pを渡す。[コード](https://ellie-app.com/3K9VdSvyQwga1)
 
 ```elm
 -- div : List (Attribute msg) -> List (Html msg) -> Html msg
@@ -228,7 +228,7 @@ view model =
 
 ## Modelを用いて描画をする
 
-Model(状態)とview関数の連携について見ていく。
+Model(状態)とview関数の連携について見ていく。(コード)[https://ellie-app.com/3K9WzJP9NG2a1]
 
 - 型aliasでModelを定義し、init関数で初期値を定義する
 - viewは、Modelを用いてHtml msg型の値を返す
@@ -237,7 +237,7 @@ Model(状態)とview関数の連携について見ていく。
 type alias Model =
     { hText : String, pText : String }
 
-init : flags -> ( Model, Cmd Msg )
+init : () -> ( Model, Cmd Msg )
 init _ =
     ( { hText = "Hello", pText = "world" }, Cmd.none )
 
@@ -254,7 +254,7 @@ view model =
 
 ## EventでModelを書き換える
 
-Eventは、viewからMsgを発行し処理を促す手段である。Msgを発行し、Modelを書き換えてみる。モジュールのimportとModelの定義は以下(次ページへ続く)。
+Eventは、viewからMsgを発行し処理を促す手段である。Msgを発行し、Modelを書き換えてみる。モジュールのimportとModelの定義は以下(次ページへ続く)。[コード](https://ellie-app.com/3K9YYn6DRMma1)
 
 ```elm
 import Html exposing (Html, text, div, h1, input)
@@ -265,7 +265,7 @@ type alias Model =
     { word : String }
 
 
-init : flags -> ( Model, Cmd Msg )
+init : () -> ( Model, Cmd Msg )
 init _ =
     ( { word = "" }, Cmd.none )
 ```
@@ -299,7 +299,7 @@ view { word } =
 
 ## EventでModelを書き換える
 
-*onInput*を用いて、input要素からの入力を受け取るとする。しかし、この様な形にするとコンパイルエラーが生じる(次ページへ続く)。
+*onInput*を用いて、input要素からの入力を受け取るとする。しかし、この様な形にするとコンパイルエラーが生じる(次ページへ続く)。[コード](https://ellie-app.com/3Kb3wqCYj7ra1)
 
 ```elm
 type Msg
@@ -343,6 +343,7 @@ But it is:
 
 ## EventでModelを書き換える
 
+[コード](https://ellie-app.com/3Kb4hYxg3pya1)
 - Stringを受け取るMsg(NewWord String)を定義する
 - case式のパターンマッチでStringを取り出し、modelのレコードを更新する
 - onInputでは、ラムダ式(無名関数)を用いてMsgを発火する
@@ -368,7 +369,7 @@ view { word } =
 
 ## List (Html msg)
 
-li等の複数のタグをList Stringの値から生成したいとする。
+li等の複数のタグをList Stringの値から生成したいとする。[コード](https://ellie-app.com/3Kb9TMCBKhna1)
 
 ```elm
 view : Model -> Html Msg
@@ -384,6 +385,7 @@ view model =
 
 ## List (Html msg)
 
+[コード](https://ellie-app.com/3Kbf8LKxLcsa1)
 - ModelでList Stringを定義し、initで初期データを入れる
 - List Stringをliのリスト、つまりList (Html Msg)に変換する(words2li)
 - view関数でwords2liを呼び出す
@@ -409,7 +411,7 @@ words2li words =
 
 ## List (Html msg)
 
-let式を用いれば、ローカル関数として定義できる。
+let式を用いれば、ローカル関数として定義できる。[コード](https://ellie-app.com/3KbfLttDnN6a1)
 
 ```elm
 view : Model -> Html Msg
@@ -425,6 +427,7 @@ view { words } =
 
 ## List (Html msg)
 
+[コード](https://ellie-app.com/3Kbh4xv7v3Ra1)
 - 1-100の整数から偶数だけを取り出し、liに変える処理をする
 - あれだけど大変・・・読みづらい・・・
 
@@ -434,8 +437,8 @@ view { words } =
     let
         evenList =
             List.map (\x -> li [] [ text x ])
-                (List.map (\x -> toString x)
-                    (List.filter (\x -> x % 2 == 0)
+                (List.map (\x -> String.fromInt x)
+                    (List.filter (\x -> modBy 2 x == 0)))
                         (List.range 1 100)
                     )
                 )
@@ -447,7 +450,7 @@ view { words } =
 
 ## List (Html msg)
 
-そんなときはパイプ演算子(|>)で、データが流れるように
+そんなときはパイプ演算子([|>](https://package.elm-lang.org/packages/elm/core/latest/Basics#(|>)))で、データが流れるように[コード](https://ellie-app.com/3Kbkn87bcrba1)
 
 ```elm
 view : Model -> Html Msg
@@ -455,8 +458,8 @@ view { words } =
     let
         evenList =
             List.range 1 100
-                |> List.filter (\x -> x % 2 == 0)
-                |> List.map toString
+                |> List.filter (\x -> modBy 2 x == 0)
+                |> List.map String.fromInt
                 |> List.map (\x -> li [] [ text x ])
     in
         ul [] evenList
