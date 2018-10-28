@@ -228,7 +228,7 @@ view model =
 
 ## Modelを用いて描画をする
 
-Model(状態)とview関数の連携について見ていく。(コード)[https://ellie-app.com/3K9WzJP9NG2a1]
+Model(状態)とview関数の連携について見ていく。[コード](https://ellie-app.com/3K9WzJP9NG2a1)
 
 - 型aliasでModelを定義し、init関数で初期値を定義する
 - viewは、Modelを用いてHtml msg型の値を返す
